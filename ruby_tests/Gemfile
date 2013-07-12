@@ -1,0 +1,17 @@
+source "https://ruby.taobao.org"
+
+gem "sequel"
+gem "sinatra"
+gem "sinatra-contrib"
+gem "thin"
+gem "json"
+gem "i18n"
+gem "php_serialize"
+gem "mongo"
+gem "bson_ext"
+gem "mysql2"
+gem "pry"
+gem "rack-test"
+gem "pony"
+gem "rest-client"
+
