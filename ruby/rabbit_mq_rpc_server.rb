@@ -3,22 +3,38 @@
 
 require "bunny"
 
-conn = Bunny.new(:automatically_recover => false)
+conn = Bunny.new
 conn.start
 
 ch   = conn.create_channel
-p " [x] Awaiting RPC requests"
 
-queue_name = "rpc_queue"
-q = ch.queue(queue_name)
-x = ch.default_exchange
+class RabbitmqRpcServer
 
-q.subscribe(:block => true) do |delivery_info, properties, payload|
-  n = payload.to_i
+  def initialize(ch)
+    @ch = ch
+  end
 
-  p " [.] fib(#{n})"
-  p properties
-  p payload
+  def start(queue_name)
+    @q = @ch.queue(queue_name)
+    @x = @ch.default_exchange
 
-  x.publish("#{n} ni mei a !", :routing_key => properties.reply_to, :correlation_id => properties.correlation_id)
+    @q.subscribe(:block => true) do |delivery_info, properties, payload|
+      n = payload.to_i
+
+      p " [.] receive (#{n})"
+      #p properties
+      #p payload
+
+      @x.publish("#{n} ni mei a !", :routing_key => properties.reply_to, :correlation_id => properties.correlation_id)
+    end
+  end
+end
+
+begin
+  server = RabbitmqRpcServer.new(ch)
+  p " [x] Awaiting RPC requests"
+  server.start("rpc_queue")
+rescue Interrupt => _
+  ch.close
+  conn.close
 end

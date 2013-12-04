@@ -3,42 +3,56 @@
 
 require "bunny"
 
-conn = Bunny.new(:automatically_recover => false)
+conn = Bunny.new
 conn.start
 
 ch   = conn.create_channel
 
-x    = ch.default_exchange
-server_queue   = "rpc_queue"
-reply_queue    = ch.queue("", :exclusive => true)
+class RabbitmqRpcClient
 
-def generate_uuid
-  # very naive but good enough for code
-  # examples
-  "#{rand}#{rand}#{rand}"
-end
+  attr_reader :reply_queue
 
-p " [x] Requesting fib(30)"
-n = 30
+  def initialize(ch, server_queue)
+    @ch = ch
+    @x    = @ch.default_exchange
 
-correlation_id = generate_uuid
+    @server_queue   = server_queue
+    @reply_queue    = @ch.queue("", :exclusive => true)
+  end
 
-x.publish(n.to_s,
-  :routing_key    => server_queue,
-  :correlation_id => correlation_id,
-  :reply_to       => reply_queue.name)
+  def call(n)
+    correlation_id = generate_uuid
 
-response = nil
-reply_queue.subscribe(:block => true) do |delivery_info, properties, payload|
-  if properties[:correlation_id] == correlation_id
-    response = payload
+    @x.publish(n.to_s,
+      :routing_key    => @server_queue,
+      :correlation_id => correlation_id,
+      :reply_to       => @reply_queue.name)
 
-    delivery_info.consumer.cancel
+    response = nil
+    @reply_queue.subscribe(:block => true) do |delivery_info, properties, payload|
+      if properties[:correlation_id] == correlation_id
+        response = payload
+
+        delivery_info.consumer.cancel
+      end
+    end
+
+    response
+  end
+
+  protected
+
+  def generate_uuid
+    # very naive but good enough for code
+    # examples
+    "#{rand}#{rand}#{rand}"
   end
 end
 
+client = RabbitmqRpcClient.new(ch, "rpc_queue")
+p " [x] Requesting fib(100)"
+response = client.call(100)
 p " [.] Got #{response}"
-
 
 ch.close
 conn.close
