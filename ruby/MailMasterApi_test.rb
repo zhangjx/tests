@@ -9,7 +9,7 @@ require "json"
 # params email hashObj :
 # { :subject => 'test', :message => 'body', :to => 'xxx@xxx.com' }
 def send_mail(mail, access_token)
-  mail_api_host = "http://mail.admasterapi.com/"
+  mail_api_host = "http://mail.api.com/"
   api_uri = mail_api_host + 'mails'
   uri = URI.parse(api_uri)
 
@@ -25,7 +25,7 @@ def send_mail(mail, access_token)
 end
 
 def send_mail_rest(mail, access_token)
-  mail_api_host = "http://mail.admasterapi.com/"
+  mail_api_host = "http://mail.api.com/"
   api_uri = mail_api_host + 'mails?access_token=' + access_token
 
   res = RestClient.post(api_uri, mail.to_json, :content_type => :json, :accept => :json)
@@ -34,10 +34,9 @@ end
 
 def get_email
   {
-    :from => "opennimei@admaster.com.cn",
+    :from => "opennimei@test.com.cn",
     :from_user_id => 1,
     :to => "zhangjx1990@gmail.com",
-    #:to => "zhangjiaxiang@admaster.com.cn",
     :subject => "test ni mei",
     :message => "<% hello world %>\n"
 #    <<eos
