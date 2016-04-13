@@ -8,13 +8,13 @@ $user_msg = <<<EOF
         <div>translation missing: cn.email_active_desc</div>
         <div><br></div>
         <div>
-            <a href="http://open.admaster.com.cn/user/active/234/77b63dd2">激活账户</a>
+            <a href="http://open.test.com.cn/user/active/234/77b63dd2">激活账户</a>
         </div>
         <div><br></div>
         <div>或者复制下面的url到浏览器中打开：</div>
         <div><br></div>
         <div>
-            <a href="http://open.admaster.com.cn/user/active/234/77b63dd2">http://open.admaster.com.cn/user/active/234/77b63dd2</a>
+            <a href="http://open.test.com.cn/user/active/234/77b63dd2">http://open.test.com.cn/user/active/234/77b63dd2</a>
         </div>
     </blockquote>
 </div>
@@ -36,13 +36,13 @@ $remind_msg = <<<EOF
         <div>您正在使用 OpenMaster 找回密码，继续请点击：</div>
         <div><br></div>
         <div>
-            <a href="http://open.admaster.com.cn/user/password/reset/272/8bade880">重置密码</a>
+            <a href="http://open.test.com.cn/user/password/reset/272/8bade880">重置密码</a>
         </div>
         <div><br></div>
         <div>或者复制下面的url到浏览器中打开：</div>
         <div><br></div>
         <div>
-            <a href="http://open.admaster.com.cn/user/password/reset/272/8bade880">http://open.admaster.com.cn/user/password/reset/272/8bade880</a>
+            <a href="http://open.test.com.cn/user/password/reset/272/8bade880">http://open.test.com.cn/user/password/reset/272/8bade880</a>
         </div>
     </blockquote>
 </div>
