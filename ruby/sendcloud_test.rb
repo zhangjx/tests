@@ -9,8 +9,7 @@ def map_mails(to, settings)
   {
     to: to,
     subject: 'OpenMaster 激活账户(仅供测试)',
-    #from: 'OpenMaster 开放平台 <OpenMaster@TrackMaster.com.cn>',
-    from: 'OpenMaster 开放平台 <open@admaster.com.cn>',
+    from: 'OpenMaster 开放平台 <open@test.com.cn>',
     html_body: get_body,
     via: 'smtp',
     via_options: settings,
@@ -27,13 +26,13 @@ body = <<eos
         <div>translation missing: cn.email_active_desc</div>
         <div><br></div>
         <div>
-            <a href="http://open.admaster.com.cn/user/active/234/77b63dd2ssss">激活账户</a>
+            <a href="http://open.test.com.cn/user/active/234/77b63dd2ssss">激活账户</a>
         </div>
         <div><br></div>
         <div>或者复制下面的url到浏览器中打开：</div>
         <div><br></div>
         <div>
-            <a href="http://open.admaster.com.cn/user/active/234/77b63dd2ssss">http://open.admaster.com.cn/user/active/234/77b63dd2ssss</a>
+            <a href="http://open.test.com.cn/user/active/234/77b63dd2ssss">http://open.test.com.cn/user/active/234/77b63dd2ssss</a>
         </div>
     </blockquote>
 </div>
