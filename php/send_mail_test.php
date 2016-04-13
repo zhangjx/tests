@@ -24,7 +24,7 @@ $code_msg = <<<EOF
 <div>
 相关id：a11972,b200138291,c1356,i0<br/>
 fla名称：7 互动flash 270×240 20K以内.fla<br/>
-下载地址：<a href="http://www.trackmaster.com.cn/code/upload/11972/200138291/1356/0/archive.zip">DOWNLOAD</a>
+下载地址：<a href="http://www.track.com.cn/code/upload/11972/200138291/1356/0/archive.zip">DOWNLOAD</a>
 </div>
 EOF;
 
