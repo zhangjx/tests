@@ -74,6 +74,6 @@ def is_valid?(email)
   result
 end
 
-b = 'test@admaster.com.cn'
+b = 'test@test.com.cn'
 p is_valid? b
 #p a.is_email2?
