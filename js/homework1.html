@@ -26,7 +26,7 @@
     };
 
     var fn1 = function(){};
-    fn1.company = 'Admaster';
+    fn1.company = 'Company';
     fn1.city = 'Beijing';
 
     var Fn1 = fn(fn1);
@@ -36,7 +36,7 @@
 
     test('Javascript 完形填空', function() {
       equal(obj1, obj2, 'obj1 等于obj2');
-      equal(obj1.constructor.company, 'Admaster', '属性company为 Admaster');
+      equal(obj1.constructor.company, 'Company', '属性company为 Company');
       equal(obj2.constructor.city, 'Beijing', '属性city为 Beijing');
     });
   })();
